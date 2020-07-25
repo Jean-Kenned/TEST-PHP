@@ -1,0 +1,38 @@
+.labels {
+  color:  #BBBBBB !important;
+  font-size: 13px;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.nomeInputStyle{
+  width:350px !important;
+}
+
+.selectStyle {
+  width:180px !important;
+}
+
+.cpfInputStyle {
+  width:180px !important;
+}
+
+.senhaInputStyle {
+  width:180px !important;
+}
+
+.title {
+  width:500px !important;
+}
+
+.navbar-center{
+  text-align: center;
+}
+.headerTitle {
+  color:  #428bca !important;
+}
+.formBody {
+  margin: auto;
+  width: 30%;
+  
+}
