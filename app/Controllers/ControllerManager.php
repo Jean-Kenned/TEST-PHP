@@ -15,7 +15,7 @@ class ControllerManager {
         break;
       case '/login':
         $userController = new UserController();
-        $userController->makeLogin();
+        $userController->makeLogin($_POST);
         break;
       case '/painel':
         $ordemServicoController = new OrdemServicoController();
@@ -26,9 +26,13 @@ class ControllerManager {
          $logout->logout();
          break;
       case '/cadastrar': 
-        $ordemServicoController = new OrdemServicoController();
-        $ordemServicoController->create();
-
+        $userController = new UserController();
+        $userController->showForm();
+      break;
+      case '/create':
+        $userController = new UserController();
+        $userController->create($_POST);
+      break;
     }
   }
 

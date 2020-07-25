@@ -8,9 +8,5 @@ class OrdemServicoController {
         echo $viewmanager->render();
     }
 
-    public function create(){
-        $viewmanager = new ViewManager('cadastrar.php');
-        echo $viewmanager->render();
-    }
   
 }
