@@ -1,10 +1,10 @@
 <?php
-    if(!isset($_SESSION)) 
-    { 
-        session_start(); 
-    } 
-  include __DIR__.'/../Utils/verifica_login.php';
-  ?>
+if (!isset($_SESSION)) {
+  session_start();
+}
+include __DIR__ . '/../Utils/verifica_login.php';
+$usuario = unserialize($_SESSION['usuario']);
+?>
 
 <!DOCTYPE html>
 <html class="bg" lang="en">
@@ -29,11 +29,33 @@
     <h5 class="welcomeFont">Seja bem vindo!</h5>
     <a href="/logout" class="btn btn-outline-success my-2 my-sm-0" role="button" aria-pressed="true">Sair</a>
   </div>
-  <div class="container"> -
-
+  <div class="container">
+    <h5>Dados do Usuário</h5>
+    <div class="row">
+      <div class="col-12">
+        <table class="table table-hover tableUser" >
+          <thead>
+            <tr>
+              <?php
+              foreach ($usuario as $key => $value) {
+              ?>
+                <th scope="col"><?php echo $key ?></th>
+              <?php } ?>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <?php
+              foreach ($usuario as $key => $value) {
+              ?>
+                <td><?php echo $value ?> </td>
+              <?php } ?>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
-
 </body>
 
 </html>
-

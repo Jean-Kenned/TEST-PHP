@@ -1,8 +1,9 @@
 <?php 
 
-session_start();
 require_once __DIR__."/../Views/ViewManager.php";
 require __DIR__."/../Http/HttpPostClient.php";
+require __DIR__."/../Usuario.php";
+session_start();
 
 class UserController {
     public function index(){
@@ -21,14 +22,22 @@ class UserController {
         $body = json_encode($params);
         $xmlResponse = $httpClient->makePostRequest($header,$body,$URL_request,$method);
         $response = simplexml_load_string($xmlResponse);
-        //need to cast to string
        if($response->status=='error'){
             $_SESSION['nao_autenticado'] = true;
             header('Location: /');
             exit;
        }else{
             $_SESSION['autenticado'] = true;
-           // $_SESSION['usuario'] = serialize($response);
+            $user = $response->usuario;
+            $usuario = new Usuario(
+                (string)$user->usuario_id,
+                (string)$user->nome,
+                (string)$user->cpf,
+                (string)$user->cep,
+                (string)$user->email,
+                (string)$user->sexo
+            );
+            $_SESSION['usuario'] = serialize($usuario);
             header('Location: /painel');
             exit;
        }
