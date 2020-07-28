@@ -33,7 +33,6 @@ class UserController {
                 (string)$user->usuario_id,
                 (string)$user->nome,
                 (string)$user->cpf,
-                (string)$user->cep,
                 (string)$user->email,
                 (string)$user->sexo
             );
@@ -67,7 +66,36 @@ class UserController {
         $body = json_encode($params);
         $xmlResponse = $httpClient->makePostRequest($header,$body,$URL_request,$method);
         $response = simplexml_load_string($xmlResponse);
-        var_dump($response);
+
+        if($response->status=='error'){
+            $_SESSION['mensagemCadastroError'] = (string)$response->message;
+            header('Location: /cadastrar');
+            exit;
+        }else{
+
+            // $user = $response->usuario;
+            // $usuarioCadastrado = new Usuario(
+            //     (string)$user->usuario_id,
+            //     (string)$user->nome,
+            //     (string)$user->cpf,
+            //     (string)$user->email,
+            //     (string)$user->sexo
+            // );
+            // $viewmanager = new ViewManager('cadastroComSucesso.php');
+            // $viewmanager->assign('usuarioCadastrado', $usuarioCadastrado);
+            // echo $viewmanager->render();
+
+            $_SESSION['mensagemCadastroSuccess'] = "Cadastro realizado com sucesso!";
+            header('Location: /');
+            exit;
+
+        }
+    }
+
+
+    public function cadastroComSucesso(){
+        header('Location: /cadastroSuccess');
+        exit;
     }
 
 

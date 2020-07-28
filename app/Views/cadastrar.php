@@ -12,6 +12,16 @@
   <div class=" navbar-light bg-light navbar-center">
     <h1 class="headerTitle">Cadastro</h1>
   </div>
+  <?php
+  if (isset($_SESSION['mensagemCadastroError'])) :
+  ?>
+    <div class="alert alert-danger" role="alert">
+      <p class="textWarning"> <?php echo $_SESSION['mensagemCadastroError'] ?></p>
+    </div>
+  <?php
+  endif;
+  unset($_SESSION['mensagemCadastroError']);
+  ?>
   <div class="formBody">
     <form name="formContact" method="POST" action="/create">
       <div class="form-group">
@@ -40,7 +50,6 @@
       </div>
       <button type="submit" class="btn btn-primary">Enviar</button>
     </form>
-  </div>
   </div>
 
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
